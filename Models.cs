@@ -109,3 +109,20 @@ public class LabAssignment : IGradable
         return (FunctionalityScore * 0.7m) + (CodeQualityScore * 0.3m);
     }
 }
+
+public class CapacityReachedException : InvalidOperationException
+{
+    public string CourseCode { get; }
+
+    public CapacityReachedException(string courseCode)
+        : base($"Course {courseCode} has reached maximum capacity.")
+    {
+        CourseCode = courseCode;
+    }
+
+    public CapacityReachedException(string courseCode, Exception innerException)
+        : base($"Course {courseCode} has reached maximum capacity.", innerException)
+    {
+        CourseCode = courseCode;
+    }
+}
